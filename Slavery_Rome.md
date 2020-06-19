@@ -29,4 +29,4 @@ to consume immediately"
      
      > No slave system has ever been able to continue to function on the slaves provided by its own biological reproduction because the rate of human reproduction is too slow and the expense from infant mortality and years of unproductive upkeep of the young make this prohibitively expensive. (318)
      
-- All this is interesting in itself, but is quite revealing of the effect of incentive on innovation in general. It seems likely that there are 'prestige traps' in the modern west today, sinecures that repress innovation in the holder and those employed under them. I will probably explore this analogy further another time.
+- All this is interesting in itself, but is quite revealing of the effect of incentive on innovation in general. It seems likely that there are 'prestige traps' in the modern west today, sinecures that repress innovation in the holder and those employed under them. Additionally, this historical case study makes salient the need to align incentives at multiple levels of the hierarchy. I will probably explore this analogy further another time.
