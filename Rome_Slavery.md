@@ -1,10 +1,12 @@
 - In his 1961 book __The Evolution of Civilizations__, Carroll Quigley coins the term "instrument of expansion" to describe a social technology enabling the growth of a society. He names three societal conditions for it to succeed at this task:
+
     -  (1) the society must be organized in such a way that it has an incentive to invent new ways of doing things
     - (2) it must be organized in such a way that somewhere in
 the society there is accumulation of surplus—that is, some
 persons in the society control more wealth than they wish
 to consume immediately"
     - (3) it must be organized in such a way that the surplus which is being accumulated is being used to pay for or to utilize the new inventions.
+    
 - Quigley analyzes the institution of slavery in the Greco-Roman world with this framework in mind, particularly the practice slavery in agriculture which is where he says it had its primary economic function. I paraphrase and describe his analysis below, focusing in on a Roman context specifically. I am not very familiar with the research on this topic besides general historical impressions and this book so keep that in mind, feel free to let me know of any errors or recommended modern sources on this topic. 
 - Slavery arose in the beginning of classical civilization (Greeks, Romans, etc from 950 B.C. to 550 A.D) from the Iron Age Indo-European conquests of the inhabitants of the Mediterranean Basin. The form it first took was domestic rather than plantation style –– owners and their families had a few to several slaves who they lived with and supervised on their agricultural estates.   
 - This local and involved character enabled slaveowners to see possible improvements in agricultural techniques and invest surpluses into implementing these improvements.  
