@@ -1,4 +1,4 @@
-- In his 1961 book __The Evolution of Civilizations__, Carroll Quigley coins the term "instrument of expansion" to describe a social technology enabling the growth of a society. He names three societal conditions for it to succeed at this task:
+- In his 1961 book __The Evolution of Civilizations__, Carroll Quigley coins the term "instrument of expansion" to describe a social technology enabling the growth of a society. He names three societal conditions needed for it to succeed at this task:
 
     -  (1) the society must be organized in such a way that it has an incentive to invent new ways of doing things
     - (2) it must be organized in such a way that somewhere in
