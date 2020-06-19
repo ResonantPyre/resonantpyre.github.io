@@ -9,7 +9,7 @@ persons in the society control more wealth than they wish
 to consume immediately"
     - (3) it must be organized in such a way that the surplus which is being accumulated is being used to pay for or to utilize the new inventions.
     
-- Quigley analyzes the institution of slavery in the Greco-Roman world with this framework in mind, particularly the practice slavery in agriculture which is where he says it had its primary economic function. I paraphrase and describe his analysis below, focusing in on a Roman context specifically. I am not very familiar with the research on this topic besides general historical impressions and this book so keep that in mind, feel free to let me know of any errors or recommended modern sources on this topic. 
+- Quigley analyzes the institution of slavery in the Greco-Roman world with this framework in mind, particularly the practice of slavery in agriculture (slave use in the household enabled leisure but was not economically productive). I paraphrase and describe his analysis below, focusing on the Roman context. I am not very familiar with the research on this topic besides general historical impressions and this book so keep that in mind, feel free to let me know of any errors or recommended modern sources on this topic. 
 
 - Slavery arose in the beginning of classical civilization (Greeks, Romans, etc from 950 B.C. to 550 A.D) from the Iron Age Indo-European conquests of the inhabitants of the Mediterranean Basin. The form it first took was domestic rather than plantation style –– owners and their families had a few to several slaves who they lived with and supervised on their agricultural estates.   
 
