@@ -1,4 +1,4 @@
-# Roman Slavery and Innovation
+# Slavery and Innovation in Ancient Rome
 
 - In his 1961 book __The Evolution of Civilizations__, Carroll Quigley coins the term "instrument of expansion" to describe a social technology enabling the growth of a society. He names three societal conditions needed for it to succeed at this task:
 
