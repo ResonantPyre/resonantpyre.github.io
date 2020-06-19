@@ -1,0 +1,2663 @@
+@charset "UTF-8";
+
+/* Fonts: loaded in fonts.css */
+/* General desktop/mobile: loaded in initial.css */
+/* default.css: contains everything else, like drop caps, link icons, tables, etc */
+
+/*********************/
+/* ARTICLE CONTAINER */
+/*********************/
+
+/*  (i.e., article) */
+/*  Nothing!
+    */
+
+/************/
+/* SECTIONS */
+/************/
+/*  Use: annotate collapsible section headers with '{.collapse}' (in the Markdown);
+    for sections where I want a summary/abstract of that (eg in Notes.page/Statistical-notes.page),
+    one annotate summaries to keep uncollapsed with '<div class="collapseSummary">summary</div>'.
+    (Pandoc Markdown does support a native div syntax, but it's long and ugly.)
+    */
+
+.collapse {
+    position: relative;
+}
+
+/*  Collapsible section elements. */
+#markdownBody .collapse + p { margin-top: 1em; }
+section.collapse {
+    overflow: hidden;
+    margin: 1.5em 0 0 -1em;
+    padding: 0 1em;
+}
+section.collapse.expanded,
+section.collapse:target {
+    overflow: visible;
+}
+section.collapse > :first-child {
+    padding-right: 1em;
+    margin-top: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+section.collapse > :first-child > a {
+    pointer-events: auto;
+    position: relative;
+}
+section.collapse > :first-child > a::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+#markdownBody section.collapse:not(:target) > .disclosure-button:not(:checked) ~ :not(.collapseSummary) {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+/*  Collapsible non-section blocks.
+    */
+:not(section).collapse > .disclosure-button:not(:checked) + * > :nth-child(n+2) {
+    max-height: 0;
+    overflow: hidden;
+}
+:not(section).collapse > .disclosure-button:not(:checked) + * > :first-child:not(.collapseSummary) {
+    max-height: 6ex;
+    overflow: hidden;
+}
+
+/*  Collapsible tables (special case).
+    */
+.collapse > .disclosure-button:not(:checked) + .tableWrapper {
+    max-height: 2.125em;
+    overflow: hidden;
+}
+
+/*  Making sure collapse summaries do not cause misalignment.
+    */
+.collapse:not(:target) > .disclosure-button:not(:checked) ~ .collapseSummary > :first-child {
+    margin-top: 0;
+}
+.collapse:not(:target) > .disclosure-button:not(:checked) ~ .collapseSummary > :last-child {
+    margin-bottom: 20px;
+}
+.collapseSummary {
+    position: relative;
+    z-index: 1;
+}
+.collapse:not(:target) > .disclosure-button:not(:checked) ~ .collapseSummary {
+    opacity: 0.75;
+}
+
+/*  The interactable region to expand/collapse.
+    */
+.disclosure-button {
+    z-index: 1;
+    position: absolute;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    margin: 0;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+section.collapse > .disclosure-button {
+    top: 0;
+    right: 0;
+}
+section.collapse > .disclosure-button:not(:checked) {
+    width: 100%;
+    height: 100%;
+}
+:not(section).collapse > .disclosure-button {
+    top: -2px;
+    right: -2px;
+}
+:not(section).collapse > .disclosure-button:not(:checked) {
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+}
+.disclosure-button:checked {
+    height: 2em;
+}
+.collapse > .disclosure-button:checked {
+    width: 100%;
+    top: 0;
+    right: 0;
+}
+section.collapse > .disclosure-button:checked {
+    height: 3em;
+}
+.collapse > .disclosure-button:checked:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+section.collapse:target > .disclosure-button {
+    pointer-events: none;
+}
+.collapse:not(:target) > .disclosure-button:not(:checked) {
+    background-image: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0.7));
+}
+.collapse:not(:target) > .disclosure-button:not(:checked):hover {
+    background-color: rgba(255,255,255,0.3);
+}
+
+/*  Triangle/chevron/angle symbol. (Copied from WikiMedia's default 'Vector' skin where it's used on mobile to, by default, collapse sections; this means everyone in the world is familiar with it as a symbol of 'collapse'/'uncollapse'.)
+    */
+.disclosure-button::before {
+    content: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M11.05 3.996l-.965-1.053-4.035 3.86-3.947-3.86L1.05 3.996l5 5 5-5' fill='%23222'/%3E%3C/svg%3E%0A");
+    font-size: 1.5em;
+    line-height: 1;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 1em;
+    height: 1em;
+    color: #999;
+    padding: 4px 0 4px 8px;
+}
+:not(section).collapse > .disclosure-button::before {
+    right: 1px;
+}
+.tableCollapse > .disclosure-button::before {
+    color: #ccc;
+}
+.disclosure-button:checked::before,
+.collapse:target > .disclosure-button::before {
+    transform: rotate(180deg);
+    top: 3px;
+}
+:not(section).collapse > .disclosure-button:checked::before {
+    top: 0;
+    right: -2px;
+}
+.collapse > .disclosure-button:hover::before {
+    color: #666;
+}
+section.collapse:target > .disclosure-button::before {
+    opacity: 0.4;
+}
+.tableCollapse > .disclosure-button:hover::before {
+    color: #eee;
+}
+.disclosure-button:focus {
+    outline: none;
+}
+.disclosure-button:focus::before {
+    text-shadow:
+        0 0 1px #e00,
+        0 0 3px #e00,
+        0 0 5px #e00;
+}
+
+/*  "Click to expand".
+    */
+.collapse:not(:target) > .disclosure-button::after {
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    color: #777;
+    pointer-events: none;
+    content: "Click to expand";
+    font-size: 1em;
+    font-weight: bold;
+    color: #777;
+    text-shadow:
+         1px -1px 0 #fff,
+        -1px  1px 0 #fff,
+        -1px -1px 0 #fff,
+         1px  1px 0 #fff;
+    top: calc(100% - 13px);
+}
+.collapse:not(:target) > .disclosure-button:hover::after {
+    color: #444;
+    text-shadow:
+         2px -2px 0 #fff,
+        -2px  2px 0 #fff,
+        -2px -2px 0 #fff,
+         2px  2px 0 #fff;
+}
+.collapse:not(:target) > .disclosure-button:checked::after {
+    content: "Click to collapse";
+}
+section.collapse:not(:target) > .disclosure-button:checked::after {
+    top: -6px;
+    text-align: right;
+    right: 24px;
+}
+:not(section).collapse:not(:target) > .disclosure-button:not(:checked)::after {
+    top: calc(100% - 9px);
+}
+:not(section).collapse:not(:target) > .disclosure-button:checked::after {
+    top: -7px;
+}
+.disclosure-button:not(:checked):hover {
+    border: 1px dotted #777;
+}
+
+/************/
+/* HEADINGS */
+/************/
+
+/* HEADER H1-6 HIERARCHY */
+h1, h2, h3, h4, h5, h6 {
+    margin: 1.25em 0 0.5em -0.75rem;
+    font-weight: bold;
+    position: relative;
+}
+@media only screen and (max-width: 65ch) {
+    h1, h2, h3, h4, h5, h6 {
+        margin: 1.25em 0 0.5em 0;
+    }
+}
+
+/*=-------------------------=*/
+/*= Inline code in headings =*/
+/*=-------------------------=*/
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+    border: none;
+    padding: 0;
+    background-color: inherit;
+    font-size: inherit;
+    font-weight: normal;
+}
+
+/*=----------------=*/
+/*= Heading levels =*/
+/*=----------------=*/
+/* h1 defined in initial.css */
+section:not(.collapse) > h1:first-child {
+    line-height: 1;
+    margin: 1.75em 0 0.375em 0;
+    text-align: right;
+    font-weight: 600;
+    box-shadow:
+        0 -2px 0 0 #fff inset,
+        0 -3px 0 0 #888 inset;
+}
+#markdownBody section:not(.collapse) > h1:first-child a {
+    position: relative;
+}
+#markdownBody section:not(.collapse) > h1:first-child a::after {
+    position: absolute;
+    top: 0.15em;
+}
+@media only screen and (min-width: 65ch) {
+    section:not(.collapse) > h1:first-child {
+        margin: 1.75em 0 0.375em -0.75rem;
+        font-size: 2em;
+        overflow: hidden;
+        padding: 0 0 3px 0.75rem;
+        box-shadow:
+            0 -5px 0 0 #fff inset,
+            0 -6px 0 0 #888 inset;
+    }
+    #markdownBody section:not(.collapse) > h1:first-child a::after {
+        opacity: 0.4;
+        left: -0.375em;
+    }
+}
+
+/*  Italics in h1 headings.
+    */
+h1 em:last-child {
+    padding-right: 0.075em;
+}
+
+h2 {
+    text-transform: uppercase;
+    font-size: 1.25em;
+    padding: 0 0.5em 0 0;
+    line-height: 1.25;
+}
+h2::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    border-bottom: 1px dotted #888;
+    left: 0;
+    bottom: 0.1em;
+    pointer-events: none;
+    z-index: -1;
+}
+#markdownBody section:not(.collapse) > h2:first-child a {
+    position: relative;
+}
+#markdownBody section:not(.collapse) > h2:first-child a::after {
+    position: absolute;
+    top: 0.1em;
+    left: unset;
+    right: -0.75em;
+}
+#markdownBody section.collapse > h2:first-child a::after {
+    top: -0.2em;
+}
+@media only screen and (min-width: 65ch) {
+    section:not(.collapse) > h2:first-child {
+        overflow: hidden;
+    }
+}
+
+h3 {
+    text-transform: capitalize;
+    font-size: 1.125em;
+}
+h4 {
+    text-transform: capitalize;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+    font-size: 1em;
+    font-weight: normal;
+    font-style: italic;
+}
+
+/*  Margins between adjacent headings should collapse.
+    */
+h1 + section > h2:first-child,
+h2 + section > h3:first-child {
+    margin-top: 0;
+}
+
+/*=----------------------------=*/
+/*= Section heading self-links =*/
+/*=----------------------------=*/
+
+article #markdownBody section > :first-child a {
+    background: none;
+}
+article #markdownBody section:not(.collapse) > h1:first-child a,
+article #markdownBody section:not(.collapse) > h2:first-child a {
+    display: block;
+}
+#markdownBody section > :first-child a:hover {
+    color: #485555;
+}
+#markdownBody section > :first-child a::after {
+    content: "\00B6"; /* Pilcrow sign: ¶ */
+    font-size: 0.75em;
+    position: relative;
+    top: -0.2em;
+    left: 0.35em;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0s ease 0.1s;
+}
+#markdownBody section > :first-child a[href^='#']:hover::after,
+#markdownBody section > :first-child a[href^='#']:active::after,
+#markdownBody section > :first-child a[href^='#']:focus::after,
+#markdownBody section:target > :first-child a[href^='#']::after,
+#markdownBody section.highlighted > :first-child a[href^='#']::after {
+    visibility: visible;
+    opacity: 0.8;
+}
+#markdownBody section:target > :first-child a[href^='#']::after {
+    opacity: 0.5;
+}
+
+/**********/
+/* FOOTER */
+/**********/
+
+#footer {
+    padding-top: 3ch;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+/**********/
+/* DISQUS */
+/**********/
+
+#disqus_thread {
+    padding-left: 0.5em;
+}
+#comments {
+    position: relative;
+    margin: 0.5em 0 0 0;
+    padding: 0.25em 0 0 0;
+}
+#comments::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: calc(100% + 1ch);
+    border-top: 1px solid #999;
+    top: 0;
+    left: 0;
+}
+
+/*********/
+/* LINKS */
+/*********/
+article > :not(#TOC) a:hover,
+#footer a:hover {
+    color: #888;
+}
+
+/*=-----------------------------------------=*/
+/*= Icons for certain link types: by target =*/
+/*=-----------------------------------------=*/
+
+/* Now handled in /static/css/links.css */
+
+
+/*********/
+/* LISTS */
+/*********/
+
+/* the /index needs more space in the lists for mobile users */
+@media only screen and (max-width:64.9ch) { body.siteIndex #markdownBody li { line-height: 1.65; } }
+
+@media only screen and (min-width: 65ch) {
+    blockquote {
+        overflow: hidden;
+    }
+}
+@media only screen and (max-width: 64.9ch) {
+    /* even less horizontal is available on mobile! */
+    blockquote {
+        margin: 1.25em 0 1.5em 0;
+    }
+}
+
+#markdownBody ul,
+#markdownBody ol {
+    list-style-type: none;
+    margin: 1.25em 0 1.5em 0;
+    padding: 0 0 0 2.5em;
+    overflow: hidden;
+}
+#markdownBody li > ul,
+#markdownBody li > ol {
+    margin: 0.5em 0;
+}
+
+#markdownBody ul > li,
+#markdownBody ol > li {
+    position: relative;
+    margin: 0;
+}
+#markdownBody ul > li:nth-of-type(n+2),
+#markdownBody ol > li:nth-of-type(n+2) {
+    margin: 0.5em 0 0 0;
+}
+
+#markdownBody ul > li::before,
+#markdownBody ol > li::before {
+    position: absolute;
+    z-index: 1;
+}
+
+@media only screen and (max-width: 64.9ch) {
+    #markdownBody ul,
+    #markdownBody ol {
+        padding: 0 0 0 1.75em;
+    }
+}
+
+/*=-----------------------=*/
+/*= Bulleted list markers =*/
+/*=-----------------------=*/
+
+#markdownBody ul > li::before {
+    color: #888;
+    font-size: 0.875em;
+    top: 0.125em;
+    left: -1.375em;
+}
+
+#markdownBody ul > li::before,
+#markdownBody ul ul ul > li::before {
+    content: "\2727";
+}
+#markdownBody ul ul > li::before,
+#markdownBody ul ul ul ul > li::before {
+    content: "\2726";
+}
+
+/*=-----------------------=*/
+/*= Numbered list markers =*/
+/*=-----------------------=*/
+
+#markdownBody ol {
+    counter-reset: ol;
+}
+#markdownBody ol > li {
+    counter-increment: ol;
+}
+#markdownBody ol > li::before {
+    content: counter(ol) ".";
+    width: 2em;
+    right: calc(100% + 0.5em);
+    text-align: right;
+    font-feature-settings: 'onum';
+    color: #444;
+}
+
+#markdownBody ol ol {
+    list-style-type: lower-roman;
+}
+#markdownBody ol ol > li {
+    padding: 0 0 0 0.25em;
+}
+#markdownBody ol ol > li::before {
+    content: none;
+}
+
+#markdownBody ol ol ol {
+    list-style-type: lower-alpha;
+}
+
+/*=------------------=*/
+/*= Weird edge cases =*/
+/*=------------------=*/
+
+li > ul + p,
+li > ol + p {
+    margin-top: 1em;
+}
+
+/***********/
+/* FIGURES */
+/***********/
+
+figure {
+    margin: 2em auto 1.75em auto;
+    max-width: calc(100% - 5em);
+}
+@supports (width: -moz-fit-content) {
+    figure {
+        width: -moz-fit-content;
+    }
+}
+@supports (width: fit-content) {
+    figure {
+        width: fit-content;
+    }
+}
+@media only screen and (max-width: 64.9ch) {
+    figure {
+        max-width: calc(100% - 2em);
+    }
+}
+figure + figure {
+    margin-top: 2.75em;
+}
+@media only screen and (max-width: 64.9ch) {
+    figure + figure {
+        margin-top: 2em;
+    }
+}
+figure img,
+figure video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    width: auto;
+    margin: 0 auto;
+    outline: 1px solid #888;
+}
+/* WARNING: work around Chrome layout bug */
+figure audio {
+    display: block;
+    margin: 0 auto;
+}
+figure img {
+    max-height: calc(100vh - 8em);
+}
+figcaption {
+    font-size: 0.9375em;
+    font-weight: bold;
+    line-height: 1.45;
+    margin: auto;
+    padding: 0.25em 0.5em calc(0.25em + 1px) 0.5em;
+}
+.caption-wrapper {
+    display: block;
+    outline: 1px solid #888;
+    margin: 1px 0 0 0;
+}
+@supports (width: -moz-fit-content) {
+    figcaption {
+        width: -moz-fit-content;
+    }
+}
+@supports (width: fit-content) {
+    figcaption {
+        width: fit-content;
+    }
+}
+@media only screen and (max-width: 64.9ch) {
+    figcaption {
+        font-size: 0.875em;
+    }
+}
+
+/* enable the various `![caption](/images/foo.jpg){.full-width}` uses; analogous to full-width tables */
+figure.full-width {
+  position: relative;
+  max-width: unset;
+}
+
+/*  Layout fix for images outside of <figure>.
+    REMOVE once all images are properly within <figure>!
+    */
+#markdownBody :not(figure) img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Floating figures. (Mostly for amusing asides/memes.) */
+@media only screen and (min-width: 65ch) {
+    figure.float-right {
+        float: right;
+        max-width: calc(50% - 1.5em);
+        margin: 0 0 1em 1.5em;
+    }
+    figure.float-left {
+        float: left;
+        max-width: calc(50% - 1.5em);
+        margin: 0 1.5em 1em 0;
+    }
+    p ~ figure.float-right,
+    p ~ figure.float-left {
+        margin-top: 1em;
+    }
+    blockquote {
+        clear: both;
+    }
+}
+
+/***************/
+/* BLOCKQUOTES */
+/***************/
+
+/* main gray background is implemented in initial.css to avoid 'flash' on load */
+
+/* avoid problems with floating */
+blockquote {
+    clear: both;
+}
+
+article > :not(#TOC) blockquote a:link,
+article > :not(#TOC) blockquote blockquote blockquote a:link,
+article > :not(#TOC) blockquote blockquote blockquote blockquote blockquote a:link {
+    text-shadow:
+         0.03em 0       var(--GW-blockquote-background-color),
+        -0.03em 0       var(--GW-blockquote-background-color),
+         0      0.03em  var(--GW-blockquote-background-color),
+         0     -0.03em  var(--GW-blockquote-background-color),
+         0.06em 0       var(--GW-blockquote-background-color),
+        -0.06em 0       var(--GW-blockquote-background-color),
+         0.09em 0       var(--GW-blockquote-background-color),
+        -0.09em 0       var(--GW-blockquote-background-color),
+         0.12em 0       var(--GW-blockquote-background-color),
+        -0.12em 0       var(--GW-blockquote-background-color),
+         0.15em 0       var(--GW-blockquote-background-color),
+        -0.15em 0       var(--GW-blockquote-background-color);
+}
+article > :not(#TOC) blockquote blockquote a:link,
+article > :not(#TOC) blockquote blockquote blockquote blockquote a:link,
+article > :not(#TOC) blockquote blockquote blockquote blockquote blockquote blockquote a:link {
+    text-shadow:
+         0.03em 0       #e6e6e6,
+        -0.03em 0       #e6e6e6,
+         0      0.03em  #e6e6e6,
+         0     -0.03em  #e6e6e6,
+         0.06em 0       #e6e6e6,
+        -0.06em 0       #e6e6e6,
+         0.09em 0       #e6e6e6,
+        -0.09em 0       #e6e6e6,
+         0.12em 0       #e6e6e6,
+        -0.12em 0       #e6e6e6,
+         0.15em 0       #e6e6e6,
+        -0.15em 0       #e6e6e6;
+}
+
+blockquote blockquote {
+    margin: 1em 1px;
+}
+
+/*=--------------------=*/
+/*= Various edge cases =*/
+/*=--------------------=*/
+
+#markdownBody blockquote blockquote:first-child {
+    margin: 0.25em 1px 1em 1px;
+}
+
+#markdownBody blockquote > :last-child,
+#markdownBody blockquote > :last-child > :last-child,
+#markdownBody blockquote > :last-child > :last-child > :last-child,
+#markdownBody blockquote > :last-child > :last-child > :last-child > :last-child {
+    margin-bottom: 0;
+}
+#markdownBody blockquote > :first-child,
+#markdownBody blockquote > :first-child > :first-child,
+#markdownBody blockquote > :first-child > :first-child > :first-child,
+#markdownBody blockquote > :first-child > :first-child > :first-child > :first-child {
+    margin-top: 0;
+}
+
+/*  Special case for tables in blockquotes.
+    */
+#markdownBody blockquote > table:last-child,
+#markdownBody blockquote > :last-child > table:last-child,
+#markdownBody blockquote > :last-child > :last-child > table:last-child,
+#markdownBody blockquote > :last-child > :last-child > :last-child > table:last-child {
+    margin-bottom: 0.5em;
+}
+#markdownBody blockquote > table:first-child,
+#markdownBody blockquote > :first-child > table:first-child,
+#markdownBody blockquote > :first-child > :first-child > table:first-child,
+#markdownBody blockquote > :first-child > :first-child > :first-child > table:first-child {
+    margin-top: 0.5em;
+}
+
+/*  Interviews (e.g. https://www.gwern.net/Morning-writing#examples).
+    */
+blockquote p > code:first-child,
+blockquote p > a:first-child code:first-child {
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
+    font-family: inherit;
+    padding: 0;
+    font-size: inherit;
+}
+
+/*  Tables in blockquotes.
+    */
+blockquote table {
+    font-size: 0.7em;
+}
+
+/*************/
+/* EPIGRAPHS */
+/*************/
+/* loosely inspired by https://edwardtufte.github.io/tufte-css/#epigraphs */
+
+.epigraph {
+    margin: 2em 0 2em 0;
+    padding: 0.5em 2.5em 0.375em 2.5em;
+    overflow: hidden;
+}
+.epigraph blockquote {
+    padding: 0;
+    border: none;
+    background-color: inherit;
+    margin: 0;
+    font-size: inherit;
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+}
+.epigraph p  {
+    font-style: italic;
+    background-color: inherit;
+}
+/*  Reverse back to normal when italics are used inside an epigraph, or final block.
+    */
+.epigraph p:nth-child(1) em, .epigraph p:last-child {
+    font-style: normal;
+}
+.epigraph blockquote > p:nth-last-child(2) > span.quote-mark:first-child,
+.epigraph blockquote > p:nth-last-child(2) > span.quote-mark:last-child {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin: 0;
+    opacity: 0;
+}
+#markdownBody .epigraph p:last-child {
+    margin: 0.5em 0 0 0;
+    text-align: right;
+    font-size: 0.875em;
+    text-indent: 0;
+}
+
+.epigraph blockquote::before,
+.epigraph blockquote::after {
+    display: block;
+    position: absolute;
+    font-size: 2.5em;
+    opacity: 0.5;
+}
+.epigraph blockquote::before {
+    content: "\201C";
+    left: -0.975em;
+    top: -0.5em;
+}
+.epigraph blockquote::after {
+    content: "\201D";
+    right: -0.975em;
+    bottom: -1em;
+}
+
+article > :not(#TOC) .epigraph blockquote a:link{
+    text-shadow:
+         0.03em 0       #fff,
+        -0.03em 0       #fff,
+         0      0.03em  #fff,
+         0     -0.03em  #fff,
+         0.06em 0       #fff,
+        -0.06em 0       #fff,
+         0.09em 0       #fff,
+        -0.09em 0       #fff,
+         0.12em 0       #fff,
+        -0.12em 0       #fff,
+         0.15em 0       #fff,
+        -0.15em 0       #fff;
+}
+
+@media only screen and (max-width: 64.9ch) {
+    .epigraph {
+        margin: 2.125em 1em;
+        padding: 0;
+        font-size: 0.95em;
+        overflow: visible;
+    }
+    .epigraph blockquote::before {
+        left: -0.375em;
+        top: -0.75em;
+    }
+    .epigraph blockquote::after {
+        right: -0.375em;
+        bottom: -1.25em;
+    }
+    .epigraph + .epigraph {
+        margin-top: 2.75em;
+    }
+}
+
+/*=------------=*/
+/*= Edge cases =*/
+/*=------------=*/
+
+@media only screen and (min-width: 65ch) {
+    h1 + .epigraph,
+    h3 + .epigraph,
+    h5 + .epigraph {
+        margin-top: 1.25em;
+    }
+    h2 + .epigraph,
+    h4 + .epigraph,
+    h6 + .epigraph {
+        margin-top: 1em;
+    }
+}
+
+/*************/
+/* FOOTNOTES */
+/*************/
+
+/* make footnotes better: http://bytes.com/topic/html-css/answers/97932-superscript-doesnt-distort-line-spacing#post340658 */
+sub,
+sup {
+    line-height: 0.3em;
+}
+a.footnote-ref sup {
+    vertical-align: baseline;
+    font-size: 0.75em;
+}
+a.footnote-ref {
+    vertical-align: super;
+    line-height: 0.3;
+    position: relative;
+    top: 0.05em;
+    padding: 0 0.05em;
+    font-feature-settings: 'lnum';
+    font-weight: 600;
+    z-index: 1;
+}
+a.footnote-ref::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: calc(100% + 0.5em);
+    height: 125%;
+    left: -0.25em;
+    top: 0;
+    z-index: -1;
+}
+
+/* Deal with multiple footnote superscripts one after another; per Charuru */
+sup + sup,
+a.footnote-ref {
+    margin-left: 0.05em;
+}
+
+#markdownBody .footnotes > ol > li + li {
+    margin: 1em 0 0 0;
+}
+
+/*=------------------------=*/
+/*= Back-to-citation links =*/
+/*=------------------------=*/
+
+.footnotes .footnote-back {
+    margin: 0 0 0 10px;
+    position: relative;
+    font-weight: bold;
+    line-height: 1;
+    border: 1px dotted #000;
+    display: inline-block;
+    padding: 5px 5px 0 6px;
+    text-indent: 0;
+    vertical-align: bottom;
+    bottom: 2px;
+}
+#markdownBody .footnotes a.footnote-back {
+    background-image: none;
+}
+#markdownBody .footnotes a.footnote-back:hover {
+    border-color: #999;
+}
+
+.footnotes li {
+    position: relative;
+}
+.footnotes blockquote + a.footnote-back,
+.footnotes pre + a.footnote-back,
+.footnotes .sourceCode + a.footnote-back {
+    position: absolute;
+    right: 0.5em;
+    top: unset;
+    bottom: -0.5em;
+    background-color: #fff;
+}
+
+/*=--------------------------=*/
+/*= Floating footnote popups =*/
+/*=--------------------------=*/
+
+/* http://ignorethecode.net/blog/2010/04/20/footnotes/ */
+#footnotediv {
+    z-index: 10001;
+    font-size: 0.9em;
+    box-shadow: 0 0 0 2px #fff;
+    position: absolute;
+    opacity: 1.0;
+    transition: none;
+}
+#footnotediv.fading {
+    opacity: 0.0;
+    transition:
+        opacity 0.75s ease-in 0.1s;
+}
+
+#footnotediv > div {
+    background-color: #fff;
+    padding: 12px 16px 14px 16px;
+    max-width: 800px;
+    max-height: calc(100vh - 32px);
+    border: 3px double #aaa;
+    line-height: 1.45;
+    overflow: auto;
+    overscroll-behavior: none;
+}
+
+/*  Scroll bar styles (Webkit/Blink only).
+    */
+#footnotediv > div::-webkit-scrollbar {
+    width: 14px;
+}
+#footnotediv > div::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    box-shadow:
+        0 0 0 3px #fff inset;
+}
+#footnotediv > div::-webkit-scrollbar-thumb:hover {
+    background-color: #999;
+}
+
+#footnotediv a.footnote-back {
+    display: none;
+}
+
+#footnotediv blockquote {
+    margin: 1em 0;
+}
+
+/*  The following compensates for the variable edge case where the last
+    blockquote within a floating footnote popup either DOES, or DOES NOT, have a
+    back-to-citation link after it (which is not shown, if present, but makes it
+    uncertain whether the blockquote is the last child of the popup or not. This
+    code makes everything consistent regardless of which case applies.
+    —Obormot (2019-02-17)
+    */
+#footnotediv > div > blockquote:nth-last-child(2) {
+    margin-bottom: 2px;
+}
+#footnotediv > div > blockquote:nth-last-child(2) + p {
+    margin-top: 1em;
+}
+
+@media only screen and (max-width: 64.9ch), not screen and (hover:hover) and (pointer:fine) {
+    #footnotediv {
+        display: none;
+    }
+}
+
+/*************/
+/* SIDENOTES */
+/*************/
+
+#sidenote-column-left,
+#sidenote-column-right {
+    position: absolute;
+    max-width: 64ch;
+    padding: 1ch;
+    font-size: 0.85em;
+}
+#sidenote-column-left {
+    height: calc(100% - 20em);
+    width: calc(50vw - (50% + 11ch));
+    top: 20em;
+    right: calc(100% + 6ch);
+}
+#sidenote-column-right {
+    height: 100%;
+    width: calc(50vw - (50% + 13ch));
+    top: 0;
+    left: calc(100% + 7.5ch);
+}
+
+/*  Hide sidenote columns on narrow viewports.
+    */
+@media only screen and (max-width: 176ch) {
+    #sidenote-column-left,
+    #sidenote-column-right {
+        display: none;
+    }
+}
+/*  Special styles for special browsers.
+    */
+@supports (-moz-user-focus: normal) {
+    @media only screen and (max-width: 176ch) {
+        #sidenote-column-left,
+        #sidenote-column-right,
+        .marginnote {
+            display: initial;
+        }
+    }
+}
+
+/*=-----------------=*/
+/*= Sidenote blocks =*/
+/*=-----------------=*/
+
+.sidenote {
+    position: absolute;
+    left: 0;
+    width: calc(100% - 2ch);
+    opacity: 0.85;
+    line-height: 1.5;
+    padding: 3.5em 2px 0 2px;
+}
+.sidenote.highlighted,
+.sidenote:hover,
+.sidenote:target,
+.sidenote.targeted {
+    background-color: #fff;
+    box-shadow:
+        0 0 0 10px #fff,
+        0 0 0 11px #aaa,
+        0 0 0 12px #fff,
+        0 0 0 13px #aaa;
+    opacity: 1.0;
+}
+.sidenote:target {
+    z-index: 1;
+}
+.sidenote.highlighted,
+.sidenote:hover {
+    z-index: 2;
+}
+
+/*  This provides a solid hover margin.
+    */
+.sidenote::after {
+    content: "";
+    position: absolute;
+    width: calc(100% + 26px);
+    height: calc(100% + 26px);
+    top: -13px;
+    left: -13px;
+}
+
+/*=-------------------=*/
+/*= Sidenote wrappers =*/
+/*=-------------------=*/
+
+/*  Outer wrapper (scrolls).
+    */
+.sidenote-outer-wrapper {
+    max-height: 720px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    border-style: dotted;
+    border-color: #aaa;
+    border-width: 1px 0;
+}
+.sidenote.cut-off .sidenote-outer-wrapper {
+    overflow-y: auto;
+    overscroll-behavior: none;
+    width: calc(100% + 2px);
+    padding: 0 4px 0 0;
+}
+
+/*  Scroll bars.
+    */
+.sidenote.cut-off .sidenote-outer-wrapper::-webkit-scrollbar {
+    width: 12px;
+}
+.sidenote.cut-off .sidenote-outer-wrapper::-webkit-scrollbar-thumb {
+    background-image: url('data:image/gif;base64,R0lGODlhBAAEAPAAMXd3d////ywAAAAABAAEAAACBgQShqgJBQA7');
+    box-shadow:
+        0 0 0 2px #fafafa inset;
+    background-size: 2px;
+}
+.sidenote.cut-off .sidenote-outer-wrapper::-webkit-scrollbar-thumb:hover {
+    background-image: url('data:image/gif;base64,R0lGODlhBAAEAPAAMQAAAP///ywAAAAABAAEAAACBgQShqgJBQA7');
+}
+
+/*  Inner wrapper (does not scroll; stretches to height of content).
+    */
+.sidenote-inner-wrapper {
+    position: relative;
+    margin: 0.5em 0;
+}
+
+/*  Ensure content is interactable.
+    */
+.sidenote-inner-wrapper > * {
+    position: relative;
+    z-index: 1;
+}
+
+/*=--------------------------------------=*/
+/*= Sidenote contents layout corrections =*/
+/*=--------------------------------------=*/
+
+.sidenote blockquote {
+    margin: 1.5em 0 0.75em 0;
+}
+.sidenote pre {
+    margin: 1.75em 0 0.75em 0;
+}
+.sidenote blockquote + *,
+.sidenote pre + * {
+    margin-top: 1.75em;
+}
+
+.sidenote p + p {
+    text-indent: 1em;
+}
+
+#markdownBody .sidenote ul,
+#markdownBody .sidenote ol {
+    padding: 0 0 0 1.75em;
+}
+
+#markdownBody .sidenote li {
+    text-align: left;
+}
+
+.sidenote code {
+    word-break: break-all;
+    hyphens: none;
+}
+
+/*=-----------=*/
+/*= Citations =*/
+/*=-----------=*/
+
+.footnote-ref.highlighted::before,
+.footnote-ref:target::before,
+.footnote-ref.targeted::before {
+    background-color: rgba(255,255,255,0.75);
+    box-shadow:
+        0 0 0 1px #aaa,
+        0 0 0 2px #fff,
+        0 0 0 3px #aaa;
+}
+@media only screen and (max-width: 176ch) {
+    .footnote-ref:target::before {
+        background-color: inherit;
+        box-shadow: none;
+    }
+}
+
+/*  Special styles for special browsers.
+    */
+@supports (-moz-user-focus: normal) {
+    @media only screen and (max-width: 176ch) {
+        .footnote-ref:target {
+            background-color: #fff;
+            box-shadow:
+                0 0.2em 0 6px #fff,
+                0 0.2em 0 7px #aaa,
+                0 0.2em 0 8px #fff,
+                0 0.2em 0 9px #aaa;
+        }
+    }
+}
+
+/*=-------------------------------=*/
+/*= Sidenote self-links (numbers) =*/
+/*=-------------------------------=*/
+
+.sidenote > .sidenote-self-link {
+    font-weight: 600;
+    position: absolute;
+    top: 3px;
+    outline: 3px double #ccc;
+    width: 2em;
+    height: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+/*  Disable link underlining.
+    */
+article > :not(#TOC) .sidenote > .sidenote-self-link {
+    background-image: none;
+}
+.sidenote.highlighted > .sidenote-self-link,
+.sidenote:hover > .sidenote-self-link,
+.sidenote:target > .sidenote-self-link,
+.sidenote.targeted > .sidenote-self-link {
+    outline: 3px double #aaa;
+}
+#sidenote-column-left .sidenote > .sidenote-self-link {
+    right: 3px;
+}
+#sidenote-column-right .sidenote > .sidenote-self-link {
+    left: 3px;
+}
+
+/*=--------------=*/
+/*= Margin notes *=/
+/*=--------------=*/
+/* display inline on mobile/narrow windows; on sufficiently-wide screens, pop out as number-less sidenotes */
+.marginnote {
+    /* bolding turns out to be too obtrusive for users' liking; italicized both inline & popped-out */
+    font-style: italic;
+}
+.marginnote.inline::after {
+    content: " ";
+}
+
+.marginnote.sidenote {
+    float: right;
+    position: absolute;
+    left: calc(100% + 3em);
+    text-align: left;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    hyphens: none;
+    text-indent: 0;
+    width: calc((100vw - 112ch) / 2 - 5em);
+    font-size: 0.85em;
+    opacity: 0.85;
+    z-index: 1;
+}
+.marginnote.sidenote:hover {
+    box-shadow: none;
+}
+
+/**********/
+/* TABLES */
+/**********/
+
+.tableWrapper {
+    margin: 2em 0 2.125em 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    box-sizing: border-box;
+}
+h1 + .tableWrapper,
+h2 + .tableWrapper,
+h3 + .tableWrapper,
+h4 + .tableWrapper,
+h5 + .tableWrapper,
+h6 + .tableWrapper {
+    margin: 0 0 2.125em 0;
+}
+
+table {
+    margin: 0;
+    padding: 0;
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.65em;
+    border-style: solid;
+    border-color: #000;
+    border-width: 2px 0;
+
+    /*  'tabular figures' to make numbers line up in tables:
+        https://practicaltypography.com/alternate-figures.html#tabular-and-proportional-figures
+        https://helpx.adobe.com/fonts/using/open-type-syntax.html#tnum
+        */
+    font-variant-numeric: tabular-nums;
+}
+
+/*=-------------------=*/
+/*= Full-width tables =*/
+/*=-------------------=*/
+
+.tableWrapper.full-width {
+    background-color: #fff;
+    z-index: 1;
+    position: relative;
+}
+
+/*=-------------=*/
+/*= Table parts =*/
+/*=-------------=*/
+
+table caption {
+    padding: 0.25em 0.75em;
+    font-style: italic;
+    font-size: 1.25em;
+    border-top: 2px solid #000;
+}
+
+table th,
+table td {
+    padding: 7px 10px;
+    line-height: 1.35;
+}
+table th {
+    font-weight: bold;
+    border-bottom: 1px solid #000;
+    text-align: left;
+}
+table td {
+    vertical-align: top;
+}
+table th + th,
+table td + td {
+    border-left: 1px solid #fff;
+}
+
+/*=--------------------------------------------------=*/
+/*= Horizontal scrollbar styling (Webkit/Blink only) =*/
+/*=--------------------------------------------------=*/
+
+.tableWrapper::-webkit-scrollbar {
+    height: 16px;
+}
+.tableWrapper::-webkit-scrollbar-thumb {
+    background-image: url('data:image/gif;base64,R0lGODlhBAAEAPAAMXd3d////ywAAAAABAAEAAACBgQShqgJBQA7');
+    background-size: 2px;
+    box-shadow:
+        0 2px 0 0   #fafafa inset,
+        0 0   0 1px #000 inset,
+        0 2px 0 1px #000 inset;
+}
+.tableWrapper::-webkit-scrollbar-thumb:hover {
+    background-image: url('data:image/gif;base64,R0lGODlhBAAEAPAAMQAAAP///ywAAAAABAAEAAACBgQShqgJBQA7');
+}
+
+/*  Add little icons to tables handled by tablesorter.js
+    to advertise that they are sortable.
+    http://tablesorter.com/docs/#Configuration
+    */
+th.tablesorter-header {
+    background-image: url('/static/img/bg.gif');
+    cursor: pointer;
+    font-weight: bold;
+    background-repeat: no-repeat;
+    background-position: center left;
+    padding-left: 20px;
+}
+th.header:hover {
+    background-color: #e2f0f2;
+}
+th.tablesorter-headerAsc {
+    background-image: url('/static/img/small_asc.gif');
+}
+th.tablesorter-headerDesc {
+    background-image: url('/static/img/small_desc.gif');
+}
+th.tablesorter-headerAsc,
+th.tablesorter-headerDesc,
+th.tablesorter-headerAsc:hover,
+th.tablesorter-headerDesc:hover {
+    background-color: #8bd0ed;
+    color: #fff;
+    text-shadow:
+       0.5px 0.5px 0 #000,
+       0 0 1px #000;
+}
+
+/*  zebra-stripe tables (CSS3); from Twitter's bootstrap package
+    */
+:not(.small-table) > table tr:nth-child(odd) td {
+    background-color: #f6f6f6;
+}
+#markdownBody table tr:hover {
+    outline: 1px dotted #000;
+}
+
+/*  Tables in blockquotes.
+    */
+blockquote :not(.small-table) > table tr:nth-child(odd) td {
+    background-color: #fff;
+}
+blockquote table th + th,
+blockquote table td + td {
+    border-left: 1px solid var(--GW-blockquote-background-color);
+}
+
+/*  Corrected version of suppliers tables CSS on /Modafinil; original by cwillu
+    */
+#suppliers-prices th {
+    padding: 3px 15px;
+}
+#suppliers-prices td {
+    padding: 0 15px;
+}
+#suppliers-prices th:nth-last-child(n+3),
+#suppliers-prices td:nth-last-child(n+3) {
+    text-align: right !important;
+}
+#suppliers-prices td:nth-child(1):after {
+    content: " mg/$";
+}
+#suppliers-prices td:nth-child(2):after {
+    content: " mg";
+}
+#suppliers-prices td:nth-child(3):before {
+    content: "x";
+    opacity: 0.4;
+}
+#suppliers-prices td:nth-child(4):before,
+#suppliers-prices td:nth-child(5):before {
+    content: "$";
+}
+
+/*=--------------------------------------------------=*/
+/*= Horizontal scrollbar styling (Webkit/Blink only) =*/
+/*=--------------------------------------------------=*/
+
+pre::-webkit-scrollbar {
+    height: 16px;
+    background-color: #fafafa;
+}
+pre::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    box-shadow:
+        0 0 0 3px #fafafa inset;
+}
+pre::-webkit-scrollbar-thumb:hover {
+    background-color: #999;
+}
+
+/***************/
+/* CODE BLOCKS */
+/***************/
+
+code {
+    padding: 0 4px;
+    /* Tufte CSS's monospace/sans suggestions, borrowing from Github: */
+    font-family: "Liberation Mono", Consolas, Courier, monospace;
+    font-size: 0.9em;
+    border: 1px solid #c8c8c8;
+    background-color: #fafafa;
+}
+pre {
+    overflow: auto;
+    margin: 1.75em auto;
+    border: 1px solid #c8c8c8;
+    background-color: #fafafa;
+    cursor: text;
+    max-height: calc(100vh - 8em);
+}
+pre code {
+    display: block;
+    padding: 8px 14px;
+    margin: 0;
+    border: none;
+    background-color: transparent;
+}
+
+/*=-------------------------------------------------------------------------=*/
+/*= Source code highlighting; generated by pandoc/skylighting: 'kate' theme =*/
+/*=-------------------------------------------------------------------------=*/
+
+a.sourceLine {
+    display: inline-block;
+    line-height: 1.25;
+}
+a.sourceLine {
+    pointer-events: none;
+    color: inherit;
+    text-decoration: inherit;
+}
+a.sourceLine:empty {
+    height: 1.2em;
+}
+pre.numberSource a.sourceLine {
+    position: relative;
+    left: -4em;
+}
+pre.numberSource a.sourceLine::before {
+    content: attr(title);
+    position: relative;
+    left: -1em;
+    text-align: right;
+    vertical-align: baseline;
+    border: none;
+    pointer-events: all;
+    display: inline-block;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    padding: 0 4px;
+    width: 4em;
+    background-color: #fff;
+    color: #a0a0a0;
+}
+pre.numberSource {
+    margin-left: 3em;
+    border-left: 1px solid #a0a0a0;
+    padding-left: 4px;
+}
+div.sourceCode {
+    color: #1f1c1b;
+    background-color: #fff;
+}
+@media only screen {
+    a.sourceLine::before {
+        text-decoration: underline;
+    }
+}
+
+code span    { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #787878; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
+
+/********/
+/* MATH */
+/********/
+
+.mjpage__block {
+    display: block;
+    overflow: auto;
+    overflow-y: hidden;
+    margin: 1.25em auto;
+}
+.mjpage__block .MJXc-display {
+    margin: 0;
+    padding: 0.25em 0;
+}
+.mjpage__block::-webkit-scrollbar {
+    height: 14px;
+    border: 1px solid #ccc;
+}
+.mjpage__block::-webkit-scrollbar-thumb {
+    box-shadow:
+        0 0 0 2px #fff inset,
+        0 0 0 8px #ccc inset;
+    border-color: #ccc transparent;
+    border-style: solid;
+    border-width: 1px;
+}
+.mjpage__block:hover::-webkit-scrollbar-thumb:hover {
+    box-shadow:
+        0 0 0 2px #fff inset,
+        0 0 0 8px #999 inset;
+}
+
+/********/
+/* MISC */
+/********/
+
+/*  WHAT IS THIS???
+    */
+p.hang {
+    text-indent: -0.44em;
+}
+
+/*  WHAT IS THIS???
+    */
+/* number formatting */
+.num {
+    font-size: 0.85em
+}
+
+
+/*************/
+/* DROP CAPS */
+/*************/
+/*  "drop caps"/"initials" (https://en.wikipedia.org/wiki/Initial
+    https://wiki.obormot.net/Reference/DropCapsDemo) are large fancy
+    block letters used to start a page/section. We skip them on mobile because
+    they use up 8-12KB each (even after @font-face subset optimization to load
+    only 1 letter at a time), and take up a lot of screen space.
+    (Mobile users can't have nice things.) To implement them, each Markdown
+    page has a custom metadata field like "css: drop-caps-goudy" which is
+    substituted into the compiled HTML like
+    '<body class="pagename drop-caps-goudy">', allowing defining of multiple
+    drop-caps and customized per page. The 3 drop-caps right now are Goudy
+    ('drop-caps-goudy'), yinit ('drop-caps-yinit'), and
+    De-Zs/Deutsche Zierschrift ('drop-caps-de-zs'). Goudy is for
+    literary/historical/humanities pages, yinit is for technical/scientific
+    pages, and De-Zs is for everything else.
+    */
+
+@media only screen and (min-width: 65ch) {
+    body[class*='drop-caps-'] #markdownBody > p:first-child::first-letter,
+    body[class*='drop-caps-'] #abstract + p::first-letter,
+    body[class*='drop-caps-'] #markdownBody > .epigraph:first-child + p::first-letter,
+    #markdownBody *[class*='drop-cap-']::first-letter,
+    #markdownBody *[class*='drop-cap-'] > p::first-letter {
+        font-style: normal;
+        font-weight: normal;
+        float: left;
+    }
+
+    /*  All of these numbers are magic.
+        */
+    body.drop-caps-goudy #markdownBody > p:first-child::first-letter,
+    body.drop-caps-goudy #abstract + p::first-letter,
+    body.drop-caps-goudy #markdownBody > .epigraph:first-child + p::first-letter,
+    #markdownBody .drop-cap-goudy::first-letter,
+    #markdownBody .drop-cap-goudy > p::first-letter {
+        font-family: "Goudy Initialen";
+        font-size: 7em;
+        line-height: 1;
+        margin: 0 0.02em -0.25em 0;
+    }
+    body.drop-caps-yinit #markdownBody > p:first-child::first-letter,
+    body.drop-caps-yinit #abstract + p::first-letter,
+    body.drop-caps-yinit #markdownBody > .epigraph:first-child + p::first-letter,
+    #markdownBody .drop-cap-yinit::first-letter,
+    #markdownBody .drop-cap-yinit > p::first-letter {
+        font-family: Yinit;
+        font-size: 5.625em;
+        line-height: 1.35;
+        margin: 0.015em 0.04em -0.5em 0.01em;
+        text-shadow: 0 0 0 #777;
+        opacity: 0.95;
+    }
+    body.drop-caps-de-zs #markdownBody > p:first-child::first-letter,
+    body.drop-caps-de-zs #abstract + p::first-letter,
+    body.drop-caps-de-zs #markdownBody > .epigraph:first-child + p::first-letter,
+    #markdownBody .drop-cap-de-zs::first-letter,
+    #markdownBody .drop-cap-de-zs > p::first-letter {
+        font-family: "Deutsche Zierschrift";
+        font-size: 6.5em;
+        line-height: 1.1;
+        margin: 0.01em 0.03em -0.25em 0;
+        text-shadow:
+             0px 2.5px 0 #fff,
+            -4px   4px 0 #fff,
+             4px   4px 0 #fff;
+        color: #191919;
+        opacity: 0.99;
+    }
+    body.drop-caps-cheshire #markdownBody > p:first-child::first-letter,
+    body.drop-caps-cheshire #abstract + p::first-letter,
+    body.drop-caps-cheshire #markdownBody > .epigraph:first-child + p::first-letter,
+    #markdownBody .drop-cap-cheshire::first-letter,
+    #markdownBody .drop-cap-cheshire > p::first-letter {
+        font-family: "Cheshire Initials";
+        font-size: 6.75em;
+        line-height: 1;
+        margin: 0.02em 0.04em -0.25em 0;
+        opacity: 0.9;
+    }
+    body.drop-caps-kanzlei #markdownBody > p:first-child::first-letter,
+    body.drop-caps-kanzlei #abstract + p::first-letter,
+    body.drop-caps-kanzlei #markdownBody > .epigraph:first-child + p::first-letter,
+    #markdownBody .drop-cap-kanzlei::first-letter,
+    #markdownBody .drop-cap-kanzlei > p::first-letter {
+        font-family: "Kanzlei Initialen";
+        font-size: 7em;
+        line-height: 1;
+        margin: 0 0.01em -0.25em -0.03em;
+        opacity: 0.9;
+    }
+
+    /*  Compensating for responsive line-height reduction.
+        */
+    @media only screen and (max-width: 120ch) {
+        body.drop-caps-goudy #markdownBody > p:first-child::first-letter,
+        body.drop-caps-goudy #abstract + p::first-letter,
+        body.drop-caps-goudy #markdownBody > .epigraph:first-child + p::first-letter,
+        #markdownBody .drop-cap-goudy::first-letter,
+        #markdownBody .drop-cap-goudy > p::first-letter {
+            font-size: 6.875em;
+        }
+        body.drop-caps-yinit #markdownBody > p:first-child::first-letter,
+        body.drop-caps-yinit #abstract + p::first-letter,
+        body.drop-caps-yinit #markdownBody > .epigraph:first-child + p::first-letter,
+        #markdownBody .drop-cap-yinit::first-letter,
+        #markdownBody .drop-cap-yinit > p::first-letter {
+            font-size: 5.375em;
+        }
+        body.drop-caps-de-zs #markdownBody > p:first-child::first-letter,
+        body.drop-caps-de-zs #abstract + p::first-letter,
+        body.drop-caps-de-zs #markdownBody > .epigraph:first-child + p::first-letter,
+        #markdownBody .drop-cap-de-zs::first-letter,
+        #markdownBody .drop-cap-de-zs > p::first-letter {
+            font-size: 6.375em;
+        }
+        body.drop-caps-cheshire #markdownBody > p:first-child::first-letter,
+        body.drop-caps-cheshire #abstract + p::first-letter,
+        body.drop-caps-cheshire #markdownBody > .epigraph:first-child + p::first-letter,
+        #markdownBody .drop-cap-cheshire::first-letter,
+        #markdownBody .drop-cap-cheshire > p::first-letter {
+            font-size: 6.625em;
+        }
+        body.drop-caps-kanzlei #markdownBody > p:first-child::first-letter,
+        body.drop-caps-kanzlei #abstract + p::first-letter,
+        body.drop-caps-kanzlei #markdownBody > .epigraph:first-child + p::first-letter,
+        #markdownBody .drop-cap-kanzlei::first-letter,
+        #markdownBody .drop-cap-kanzlei > p::first-letter {
+            font-size: 6.875em;
+        }
+    }
+    @media only screen and (max-width: 100ch) {
+        body.drop-caps-goudy #markdownBody > p:first-child::first-letter,
+        body.drop-caps-goudy #abstract + p::first-letter,
+        body.drop-caps-goudy #markdownBody > .epigraph:first-child + p::first-letter,
+        #markdownBody .drop-cap-goudy::first-letter,
+        #markdownBody .drop-cap-goudy > p::first-letter {
+            font-size: 6.625em;
+        }
+        body.drop-caps-yinit #markdownBody > p:first-child::first-letter,
+        body.drop-caps-yinit #abstract + p::first-letter,
+        body.drop-caps-yinit #markdownBody > .epigraph:first-child + p::first-letter,
+        #markdownBody .drop-cap-yinit::first-letter,
+        #markdownBody .drop-cap-yinit > p::first-letter {
+            font-size: 5.25em;
+        }
+        body.drop-caps-de-zs #markdownBody > p:first-child::first-letter,
+        body.drop-caps-de-zs #abstract + p::first-letter,
+        body.drop-caps-de-zs #markdownBody > .epigraph:first-child + p::first-letter,
+        #markdownBody .drop-cap-de-zs::first-letter,
+        #markdownBody .drop-cap-de-zs > p::first-letter {
+            font-size: 6.125em;
+        }
+        body.drop-caps-cheshire #markdownBody > p:first-child::first-letter,
+        body.drop-caps-cheshire #abstract + p::first-letter,
+        body.drop-caps-cheshire #markdownBody > .epigraph:first-child + p::first-letter,
+        #markdownBody .drop-cap-cheshire::first-letter,
+        #markdownBody .drop-cap-cheshire > p::first-letter {
+            font-size: 6.3125em;
+        }
+        body.drop-caps-kanzlei #markdownBody > p:first-child::first-letter,
+        body.drop-caps-kanzlei #abstract + p::first-letter,
+        body.drop-caps-kanzlei #markdownBody > .epigraph:first-child + p::first-letter,
+        #markdownBody .drop-cap-kanzlei::first-letter,
+        #markdownBody .drop-cap-kanzlei > p::first-letter {
+            font-size: 6.6875em;
+        }
+    }
+
+    /*  Special styles for special browsers.
+        */
+    @supports (-moz-user-focus: normal) {
+        body.drop-caps-goudy #markdownBody > p:first-child::first-letter,
+        body.drop-caps-goudy #abstract + p::first-letter,
+        body.drop-caps-goudy #markdownBody > .epigraph:first-child + p::first-letter,
+        #markdownBody .drop-cap-goudy::first-letter,
+        #markdownBody .drop-cap-goudy > p::first-letter {
+            margin: 0.045em 0.02em 0 0;
+        }
+        body.drop-caps-yinit #markdownBody > p:first-child::first-letter,
+        body.drop-caps-yinit #abstract + p::first-letter,
+        body.drop-caps-yinit #markdownBody > .epigraph:first-child + p::first-letter,
+        #markdownBody .drop-cap-yinit::first-letter,
+        #markdownBody .drop-cap-yinit > p::first-letter {
+            margin: 0.065em 0.04em 0 0.01em;
+        }
+        body.drop-caps-de-zs #markdownBody > p:first-child::first-letter,
+        body.drop-caps-de-zs #abstract + p::first-letter,
+        body.drop-caps-de-zs #markdownBody > .epigraph:first-child + p::first-letter,
+        #markdownBody .drop-cap-de-zs::first-letter,
+        #markdownBody .drop-cap-de-zs > p::first-letter {
+            margin: 0.06em 0.04em 0 0;
+        }
+        body.drop-caps-cheshire #markdownBody > p:first-child::first-letter,
+        body.drop-caps-cheshire #abstract + p::first-letter,
+        body.drop-caps-cheshire #markdownBody > .epigraph:first-child + p::first-letter,
+        #markdownBody .drop-cap-cheshire::first-letter,
+        #markdownBody .drop-cap-cheshire > p::first-letter {
+            margin: 0.06em 0.04em 0 0.01em;
+        }
+        body.drop-caps-kanzlei #markdownBody > p:first-child::first-letter,
+        body.drop-caps-kanzlei #abstract + p::first-letter,
+        body.drop-caps-kanzlei #markdownBody > .epigraph:first-child + p::first-letter,
+        #markdownBody .drop-cap-kanzlei::first-letter,
+        #markdownBody .drop-cap-kanzlei > p::first-letter {
+            margin: 0.05em 0.02em 0 -0.04em;
+        }
+    }
+}
+
+/*****************/
+/* MULTI-COLUMNS */
+/*****************/
+/* Inspired by Markdeep (https://casual-effects.com/markdeep/features.md.html#multiplecolumns); limited multi-column support as a div class annotation */
+/* This is particularly useful for extremely long ('skinny') lists where items tend to be short, such as in /DNM-archives#overall-coverage or /Replication */
+/* Uses CSS3 columns: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Columns/Using_multi-column_layouts https://www.caniuse.com/#feat=multicolumn */
+/* Currently limited to lists due to issues with hidden:overflow in FF and sidenotes.js in Chrome. */
+#markdownBody .columns > ul,
+#markdownBody .columns > ol {
+    column-width: 30ch;
+    column-gap: 6ch;
+    margin-bottom: 2em;
+}
+#markdownBody .columns > ul li,
+#markdownBody .columns > ol li,
+#markdownBody .columns > ul li p,
+#markdownBody .columns > ol li p {
+    text-align: left;
+    break-inside: avoid;
+}
+
+#markdownBody .columns > ul figure {
+    margin: 0 0 1.5em 0;
+}
+
+/***************/
+/* ADMONITIONS */
+/***************/
+/* Highlighted boxes: 'admonitions' are small break-out boxes with notes, tips, warnings, etc. for the reader.  */
+/* These are particularly useful in didactic technical writing, where there are many ways to slip up while using or coding something. */
+/* Available (in increasing order of minatoriness): 'tip', 'note', 'warning', 'error'. */
+/* Based on Markdeep's implementation: https://casual-effects.com/markdeep/features.md.html#basicformatting/admonitions (which appears loosely inspired by Wikipedia's notification templates like `{{NPOV}}`) */
+/* and modified to grayscale (increasing intensity == increasing warning) for gwern.net. */
+/* Usage examples: */
+/* - <div class="admonition tip"><div class="admonition-title">Tip title (optional)</div> text</div> */
+/* - <div class="admonition note"><div class="admonition-title">Note title (*)</div> text</div> */
+/* - <div class="admonition warning"><div class="admonition-title">Warning title (*)</div> text</div> */
+/* - <div class="admonition error"><div class="admonition-title">Error title (*)</div> text</div> */
+.admonition {
+    font-family: "Lucida Sans Unicode", "Source Sans Pro", Helvetica, "Trebuchet MS", sans-serif;
+    font-size: 0.875em;
+    position: relative;
+    margin: 2em 0 1.5em 0;
+    padding: 0.75em 1.25em 0.875em 1.125em;
+    border-left: 2.5rem solid #969696;
+    background-color: #d8d8d8;
+}
+.admonition-title {
+    font-weight: bold;
+}
+.admonition.tip {
+    border-left-color: #d8d8d8;
+    background-color: #fafafa;
+}
+.admonition.warn,
+.admonition.warning {
+    border-left-color: #5a5a5a;
+    background-color: #969696;
+    color: #fff;
+}
+.admonition.warn > .admonition-title::after,
+.admonition.warning > .admonition-title::after {
+    background-color: #5a5a5a;
+}
+.admonition.error {
+    border-left-color: #2d2d2d;
+    background-color: #5a5a5a;
+    color: #fff;
+}
+.admonition.error > .admonition-title::after {
+    background-color: #2d2d2d;
+}
+
+.admonition.note::before,
+.admonition.tip::before,
+.admonition.warn::before,
+.admonition.warning::before,
+.admonition.error::before {
+    font-weight: bold;
+    width: 2.5rem;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 100%;
+    text-align: center;
+}
+
+.admonition.note::before {
+    content: "\261E"; /* White Right Pointing Index hand '☞' (U+261E)  */
+    font-size: 2.6em;
+    color: #fff;
+}
+.admonition.tip::before {
+    content: "\24d8"; /* Circled Latin Small Letter 'ⓘ' (U+24D8) */
+    font-size: 1.7em;
+    top: -3px;
+    left: -2.5rem;
+}
+.admonition.warn::before,
+.admonition.warning::before {
+    content: "\26A0"; /* Warning Sign '⚠' triangle (U+26A0) */
+    font-size: 1.9em;
+    color: #fff;
+    padding: 0.25em 0 0 0;
+}
+.admonition.error::before {
+    content:  "\2620"; /* Skull and Crossbones. '☠' (U+2620) */
+    font-size: 2.25em;
+    color: #fff;
+}
+
+.admonition p:last-child {
+    margin-bottom: 0
+}
+
+.admonition code {
+    background-color: transparent;
+    border: none;
+    padding-left: 0;
+    font-size: unset;
+}
+
+article > :not(#TOC) .admonition a:link {
+    text-shadow: none;
+    color: currentColor;
+    background-image: none;
+    text-decoration: underline;
+}
+article > :not(#TOC) .admonition a:hover {
+    text-decoration: dotted underline;
+}
+
+/*******************************/
+/* PAGE-SPECIFIC MODIFICATIONS */
+/*******************************/
+
+/*=-------------------------=*/
+/*= Index page & Tags pages =*/
+/*=-------------------------=*/
+
+/*  Add some vertical padding for the introduction.
+    */
+body.siteIndex #markdownBody {
+    padding-top: 1.5ch;
+}
+
+/*  Make the sections reflow; better than fixed-width tables.
+    */
+body.siteIndex article section {
+    display: inline-block;
+    vertical-align: top;
+}
+
+/*  No index self-link.
+    */
+body.siteIndex #sidebar a#logo {
+    pointer-events: none;
+}
+/*  Abstract is not a real abstract.
+    */
+body.siteIndex #abstract {
+    padding: 0;
+    border: none;
+    margin: 0;
+    box-shadow: none;
+}
+
+/*  Less fancy headings.
+    */
+body.siteIndex section:not(.collapse) > h1:first-child {
+    font-size: 1.5em;
+    line-height: 1.125;
+    box-shadow: none;
+    text-align: left;
+    font-weight: bold;
+    margin-left: 0;
+    padding: 0;
+}
+
+/*  Nice-looking bottom decoration.
+    */
+body.siteIndex article,
+body.tags article {
+    position: relative;
+    padding-bottom: 4em;
+}
+body.siteIndex article::after,
+body.tags article::after{
+    content: "";
+    background-color: #fff;
+    background-image: url('/images/logo-smooth.svg');
+    display: block;
+    position: absolute;
+    bottom: 0.75em;
+    width: 22px;
+    height: 30px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 0 10px 0 11px;
+    z-index: 1;
+}
+body.siteIndex article::before,
+body.tags article::before{
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: calc(0.75em + 15px);
+    height: 1px;
+    border-bottom: 1px dotted #000;
+    width: 100%;
+    opacity: 0.5;
+}
+
+/*  Lists on the home page.
+    */
+body.siteIndex #markdownBody ul,
+body.tags #markdownBody ul {
+    margin: 1.25em 3em 0 0;
+    padding: 0 0 0 1.375em;
+}
+body.siteIndex #markdownBody li > ul,
+body.tags #markdownBody li > ul {
+    margin: 0.25em 0 0.25em 0;
+}
+body.siteIndex #markdownBody li,
+body.tags #markdownBody li {
+    margin-top: 0;
+}
+body.siteIndex #markdownBody > section ~ p {
+    border-top: 1px dotted #777;
+    margin: 2em 0 0 0;
+    padding: 1em 0 0 0;
+    font-weight: bold;
+}
+
+/*  Internal links on the home page need no decoration.
+    */
+body.siteIndex #markdownBody a[href^="."]:not([href*="/docs/"]):not([href*="/images/"])::after,
+body.siteIndex #markdownBody a[href^="https://www.gwern.net/"]:not([href$=".pdf"])::after {
+    content: none;
+}
+
+@media only screen and (min-width: 120ch) {
+    /*  Leave enough horizontal room to show multiple sections simultaneously,
+        table-like
+        */
+    body.siteIndex #markdownBody {
+        width: 135ch;
+        max-width: calc(50vw + 42ch);
+    }
+    body.siteIndex p,
+    body.siteIndex hr {
+        max-width: 97ch;
+    }
+}
+@media only screen and (max-width: 64.9ch) {
+    body.siteIndex #sidebar #logo {
+        border: 1px dotted transparent;
+        align-self: flex-start;
+        padding: 7px 5px 6px 5px;
+    }
+    body.siteIndex #markdownBody section {
+        max-width: 100%;
+    }
+    body.siteIndex #markdownBody ul,
+    body.tags #markdownBody ul {
+        overflow-wrap: break-word;
+        margin-right: 0;
+    }
+    body.siteIndex #markdownBody li,
+    body.tags #markdownBody li {
+        padding: 1px 0;
+        margin: 2px 0 0 0;
+    }
+    body.siteIndex #markdownBody ul > li::before,
+    body.tags #markdownBody ul > li::before {
+        top: 0.25em;
+    }
+}
+
+/*=-------=*/
+/*= /Mead =*/
+/*=-------=*/
+
+/*  This is for the pictures of mead bottles next to the reviews.
+    */
+body.mead p > img {
+    float: right;
+    max-height: 8em;
+    width: auto;
+    position: relative;
+    z-index: 1;
+    margin: 1em 1em 1em 2em;
+    box-shadow:
+        0 0 0 15px #fff,
+        0 0 0 16px #ccc,
+        0 0 0 17px transparent;
+}
+
+/*=-------=*/
+/*= /Hafu =*/
+/*=-------=*/
+
+body.hafu .tableWrapper#hafu-list-table td:last-of-type {
+    width: 50%;
+}
+
+/*=------------------=*/
+/*= /komm-susser-tod =*/
+/*=------------------=*/
+
+body.kommsussertod .tableWrapper#lyrics-table {
+    padding: 0 calc((100vw - 6.5ch - 105ch) / 2);
+}
+
+/*=----------------=*/
+/*= /Catnip-survey =*/
+/*=----------------=*/
+
+body.catnipsurvey .tableWrapper#results-table {
+    padding: 0 calc((100vw - 6.5ch - 120ch) / 2);
+}
+
+/*=---------=*/
+/*= /Iodine =*/
+/*=---------=*/
+
+body.iodine .tableWrapper#data-table {
+    padding: 0 calc((100vw - 6.5ch - 105ch) / 2);
+}
+
+/*=--------------=*/
+/*= /DNM-arrests =*/
+/*=--------------=*/
+
+body.dnmarrests .tableWrapper#data-table td:nth-of-type(6),
+body.dnmarrests .tableWrapper#data-table td:nth-of-type(12),
+body.dnmarrests .tableWrapper#data-table td:nth-of-type(13) {
+    white-space: nowrap;
+}
+body.dnmarrests .tableWrapper#data-table td:last-of-type {
+    width: 20%;
+}
+
+/*=---------------=*/
+/*= /Book-reviews =*/
+/*=---------------=*/
+
+body.bookreviews .tableWrapper#book-reviews-table {
+    clear: both;
+    word-break: break-all;
+}
+body.bookreviews .tableWrapper#book-reviews-table table {
+    table-layout: fixed;
+}
+body.bookreviews .tableWrapper#book-reviews-table td:last-of-type {
+    word-break: normal;
+    hyphens: auto;
+}
+body.bookreviews .tableWrapper#book-reviews-table th:nth-of-type(1),
+body.bookreviews .tableWrapper#book-reviews-table td:nth-of-type(1) {
+    width: 12%;
+}
+body.bookreviews .tableWrapper#book-reviews-table th:nth-of-type(2),
+body.bookreviews .tableWrapper#book-reviews-table td:nth-of-type(2) {
+    width: 7%;
+}
+body.bookreviews .tableWrapper#book-reviews-table th:nth-of-type(3),
+body.bookreviews .tableWrapper#book-reviews-table td:nth-of-type(3),
+body.bookreviews .tableWrapper#book-reviews-table th:nth-of-type(5),
+body.bookreviews .tableWrapper#book-reviews-table td:nth-of-type(5) {
+    width: 5%;
+}
+body.bookreviews .tableWrapper#book-reviews-table th:nth-of-type(4),
+body.bookreviews .tableWrapper#book-reviews-table td:nth-of-type(4) {
+    width: 3%;
+}
+body.bookreviews .tableWrapper#book-reviews-table td:last-of-type {
+    width: 68%;
+}
+
+/*************************/
+/* UI ELEMENTS CONTAINER */
+/*************************/
+
+#ui-elements-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    pointer-events: none;
+}
+#ui-elements-container > * {
+    pointer-events: auto;
+}
+
+/***************/
+/* IMAGE FOCUS */
+/***************/
+
+/*=--------------=*/
+/*= Hover styles =*/
+/*=--------------=*/
+
+#markdownBody img:hover {
+    filter: drop-shadow(0 0 3px #777);
+    cursor: zoom-in;
+}
+#markdownBody img:active {
+    transform: scale(0.975);
+}
+
+/*=---------=*/
+/*= Overlay =*/
+/*=---------=*/
+
+#image-focus-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    display: none;
+    cursor: zoom-out;
+}
+#image-focus-overlay::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000;
+    opacity: 0.9;
+    z-index: -1;
+}
+#image-focus-overlay.engaged {
+    display: initial;
+}
+
+#image-focus-overlay img {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+/*=-------------------=*/
+/*= Single-image mode =*/
+/*=-------------------=*/
+
+#image-focus-overlay:not(.slideshow) .image-number,
+#image-focus-overlay:not(.slideshow) .slideshow-buttons,
+#image-focus-overlay:not(.slideshow) .slideshow-help-text {
+    display: none;
+}
+
+/*=---------=*/
+/*= Caption =*/
+/*=---------=*/
+
+#image-focus-overlay .caption {
+    position: absolute;
+    bottom: 0.75em;
+    background-color: rgba(0, 0, 0, 0.7);
+    left: 4.5em;
+    right: 4.5em;
+    margin: auto;
+    max-width: calc(100% - 9em);
+    text-align: center;
+    font-family: "Lucida Sans Unicode", "Source Sans Pro", Helvetica, "Trebuchet MS", sans-serif;
+    border-radius: 8px;
+    z-index: 1;
+    transition:
+        bottom 0.15s ease;
+}
+@supports (width: -moz-fit-content) {
+    #image-focus-overlay .caption {
+        width: -moz-fit-content;
+    }
+}
+@supports (width: fit-content) {
+    #image-focus-overlay .caption {
+        width: fit-content;
+    }
+}
+#image-focus-overlay .caption.hidden {
+    bottom: -50%;
+    transition:
+        bottom 0.5s ease-in;
+}
+
+#image-focus-overlay .caption p {
+    margin: 1em 1.25em;
+    color: #fff;
+}
+#image-focus-overlay .caption code {
+    background-color: inherit;
+    border: none;
+    font-size: 1em;
+}
+#image-focus-overlay .caption a {
+    color: #ccc;
+}
+#image-focus-overlay .caption a:hover {
+    color: #aaa;
+}
+
+#image-focus-overlay .caption:not(:empty)::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100vw;
+    height: calc(100% + 1.5em);
+    z-index: -1;
+    top: -0.75em;
+    left: calc(-50vw + 50%);
+}
+
+/*=--------------=*/
+/*= Help overlay =*/
+/*=--------------=*/
+
+#image-focus-overlay .help-overlay {
+    position: absolute;
+    display: flex;
+    flex-flow: column;
+    z-index: 2;
+    font-family: "Lucida Sans Unicode", "Source Sans Pro", Helvetica, "Trebuchet MS", sans-serif;
+    font-size: 1.25rem;
+    padding: 1em;
+    border-radius: 10px;
+    bottom: 1em;
+    right: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    color: transparent;
+    visibility: hidden;
+    transition:
+        visibility 1s ease,
+        color 1s ease,
+        background-color 1s ease,
+        bottom 0.3s ease;
+}
+#image-focus-overlay .help-overlay:hover {
+    max-width: 24em;
+    max-height: 14em;
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    visibility: visible;
+    transition:
+        visibility 0.2s ease 0.3s,
+        color 0.2s ease 0.3s,
+        background-color 0.2s ease 0.3s;
+}
+
+#image-focus-overlay .help-overlay::after {
+    content: "?";
+    font-weight: bold;
+    font-size: 2rem;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 10px;
+    color: #000;
+    filter: drop-shadow(0 0 6px #fff);
+    visibility: visible;
+    opacity: 0.85;
+    transition:
+        visibility 1s ease;
+}
+#image-focus-overlay .help-overlay:hover::after {
+    visibility: hidden;
+    transition:
+        visibility 0.2s ease 0.3s;
+}
+
+#image-focus-overlay .help-overlay p {
+    margin: 0;
+    text-indent: -2em;
+    padding-left: 2em;
+    max-width: 100%;
+    overflow: hidden;
+}
+#image-focus-overlay .help-overlay p + p {
+    margin: 0.75em 0 0 0;
+}
+#image-focus-overlay .help-overlay.hidden {
+    bottom: -2em;
+}
+
+/*=--------------=*/
+/*= Slide number =*/
+/*=--------------=*/
+
+#image-focus-overlay .image-number {
+    position: absolute;
+    z-index: 2;
+    font-family: "Lucida Sans Unicode", "Source Sans Pro", Helvetica, "Trebuchet MS", sans-serif;
+    font-size: 1.5rem;
+    left: 1em;
+    top: 1em;
+    font-weight: 600;
+    text-shadow:
+        0 0 3px #fff,
+        0 0 5px #fff,
+        0 0 8px #fff,
+        0 0 13px #fff;
+    width: 1.5em;
+    text-align: right;
+    white-space: nowrap;
+    transition: top 0.3s ease;
+}
+#image-focus-overlay .image-number::before {
+    content: "#";
+    opacity: 0.3;
+}
+#image-focus-overlay .image-number::after {
+    content: " of " attr(data-number-of-images);
+    opacity: 0.3;
+}
+#image-focus-overlay .image-number:hover::before,
+#image-focus-overlay .image-number:hover::after {
+    opacity: 1.0;
+}
+#image-focus-overlay .image-number.hidden {
+    top: -1.25em;
+}
+
+/*=-------------------=*/
+/*= Slideshow buttons =*/
+/*=-------------------=*/
+
+#image-focus-overlay .slideshow-buttons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+}
+#image-focus-overlay .slideshow-buttons button {
+    font-size: 3rem;
+    color: #ddd;
+    border: none;
+    background-color: transparent;
+    position: relative;
+    left: 0;
+    transition:
+        left 0.3s ease;
+    pointer-events: auto;
+    cursor: pointer;
+    width: 4rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-origin: content-box;
+}
+#image-focus-overlay .slideshow-buttons button.next {
+    padding: 0.25em 0.25em 0.25em 0.375em;
+}
+#image-focus-overlay .slideshow-buttons button.previous {
+    padding: 0.25em 0.375em 0.25em 0.25em;
+}
+#image-focus-overlay .slideshow-buttons button svg {
+    pointer-events: none;
+    fill: currentColor;
+}
+#image-focus-overlay .slideshow-buttons button::selection {
+    background-color: transparent;
+}
+@media only screen and (hover: hover) {
+    #image-focus-overlay .slideshow-buttons button:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+        color: #777;
+    }
+    #image-focus-overlay .slideshow-buttons button:not(:disabled):hover svg {
+        filter:
+            drop-shadow(0 0 1px #fff)
+            drop-shadow(0 0 3px #fff);
+    }
+}
+#image-focus-overlay .slideshow-buttons button:active {
+    transform: none;
+    color: #888;
+}
+#image-focus-overlay .slideshow-buttons button:disabled {
+    text-shadow: none;
+    background-color: transparent;
+    color: #ddd;
+    cursor: default;
+    opacity: 0.4;
+}
+#image-focus-overlay .slideshow-button.previous.hidden {
+    left: -1.75em;
+}
+#image-focus-overlay .slideshow-button.next.hidden {
+    left: 1.75em;
+}
+
+/*=---------=*/
+/*= Tooltip =*/
+/*=---------=*/
+
+.image-wrapper {
+    position: relative;
+    display: block;
+    margin: auto;
+}
+.image-wrapper::after {
+    content: "Click to enlarge";
+    display: block;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    bottom: 10px;
+    padding: 6px 15px 7px 15px;
+    font-size: 1rem;
+    font-family: "Lucida Sans Unicode", "Source Sans Pro", Helvetica, "Trebuchet MS", sans-serif;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    border-radius: 5px;
+    opacity: 0.0;
+    transition: opacity 0.15s ease;
+    pointer-events: none;
+}
+@supports (width: -moz-fit-content) {
+    .image-wrapper,
+    .image-wrapper::after {
+        width: -moz-fit-content;
+    }
+}
+@supports (width: fit-content) {
+    .image-wrapper,
+    .image-wrapper::after {
+        width: fit-content;
+    }
+}
+.image-wrapper:hover::after {
+    opacity: 1.0;
+}
+
+/* LaTeX: Format the LaTeX symbol correctly (a higher up, e lower) (borrowed from https://latex.now.sh/ ) */
+.latex span:nth-child(1) {
+ text-transform:uppercase;
+ font-size:.76em;
+ vertical-align:.25em;
+ margin-left:-.30em;
+ margin-right:-.08em;
+ line-height:1ex
+}
+.latex span:nth-child(2) {
+ text-transform:uppercase;
+ vertical-align:-.5ex;
+ margin-left:-.160em;
+ margin-right:-.120em;
+ line-height:1ex
+}
