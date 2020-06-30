@@ -1,6 +1,6 @@
 # Fukuyama's Scientific and Technological Universal History
 
-In which I try to explain Francis Fukyuyama's ideas about a scientific and technological universal history as he explains it in "The End of History and the Last Man". 
+In which I try to explain Francis Fukyuyama's ideas about a scientific and technological universal history as he explains it in "The End of History and the Last Man". All quotes are from this book unless otherwise stated, as are the ideas.
 
 
 ## What is a universal history and what might be its mechanism?
@@ -16,7 +16,7 @@ Fukuyama stakes his attempt to show the directionality of human history on there
         
 The accumulation of knowledge, abstract but more often encoded in specific practices, from agriculture to metallurgy, is ancient. The discovery of the scientific method, however, qualitatively changed the relationship of scientific knowledge to the historical process. It did this by increasing the pace and by formulating it in a way that it scientific knowledge could "become a universal possession of rational man" unhindered by contingent cultural differences. Fukuyama's Universal History driven by science truly begins with modern natural science, in the sixteenth and seventeenth centuries onward. 
 
-Scientific progress is not, for now, entirely autonomous of man. It was neglected by man for thousands of years and could be neglected for thousands more, if the consequences and uses of scientific knowledge did not force men to adopt its banner. These consequences are not because of the knowledge in itself, but what men does with it. The scientific method is obviously the tool, along with human intelligence and the environments that foster it which _do_ scientific progress. But what encourages, even requires its use and forces its discoveries to be accepted and taught?
+Scientific progress is not, for now, entirely autonomous of man. It was neglected by man for thousands of years and could be neglected for thousands more, if the consequences and uses of scientific knowledge did not force men to adopt its logic. These consequences are not because of the knowledge in itself, but what men do with it. The scientific method is obviously the tool, along with human intelligence _does_ science. But what encourages, even requires its use and forces its discoveries to be accepted and taught?
  
 Fukuyama describes two interactions on the individual and group level, which directly motivate the scientific and technological endeavor. The first is military competition. The second is the progressive conquest of nature to satisfy human desires, also called economic development. 
 
@@ -26,7 +26,7 @@ The effect of these processes on society may be summed up with a pithy Lenin quo
    
 This is only true to a point, but it does account for most of the societal changes technology has encouraged. Fukuyama cites one statistic that highlights this.
 
-            > In contrast to the nineteenth century, when four out of five Americans were self-employed and therefore not part of a bureaucratic organization, only one in ten falls into this category now. 
+  > In contrast to the nineteenth century, when four out of five Americans were self-employed and therefore not part of a bureaucratic organization, only one in ten falls into this category now. 
         
 State capacity had to develop to mobilize resources on national level, to increase education levels to have an elite capable of understanding and using technology. The poorer classes had to be placated with varying levels of political enfranchisement as they wielded weapons in wars of mass mobilization (the Napoleonic Wars onward). Collaboration and participation on a mass level, economically and otherwise, spurred greater linguistic homogeneity both naturally and through national policy. 
   
