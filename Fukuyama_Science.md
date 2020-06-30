@@ -7,7 +7,9 @@ In which I try to explain Francis Fukyuyama's ideas about a scientific and techn
 
 A "universal history" is "an attempt to find a meaningful pattern in the overall development of of human societies generally". A key assumption is the basic continuity of history, in a way that surpasses the mere repetition of cycles. In the Western tradition, the first Universal Histories were Christian and the first secular versions of a Universal History originated with the progress being made with the scientific method. 
 
-Modern natural science provided a metric upon which a clear notion of "progress" could be tied to. Progress was the cumulative and possibly endless quest for knowledge. A French intellectual in the 17th century, Fontenelle, described it thus: "A good cultivated mind contains, so to speak, all minds of preceding centuries; it is but a single identical mind which has been developing and improving itself all the time..". The progressive evolution of knowledge is also the evolution of the human mind.
+Modern natural science provided a metric upon which a clear notion of "progress" could be tied to. Progress was the cumulative and possibly endless quest for knowledge. A French intellectual in the 17th century, Fontenelle, described it thus: 
+   
+   > "A good cultivated mind contains, so to speak, all minds of preceding centuries; it is but a single identical mind which has been developing and improving itself all the time". 
 
 Fukuyama stakes his attempt to show the directionality of human history on there being a constant and uniform mechanism that dictates historical evolution in a certain direction and also "preserves the memory of earlier periods into the present" (71) to prevent repetition. Agreeing with intellectuals of the past, he agrees that __knowledge__ is the mechanism of directionality, specifically and most un-ambiguously scientifically derived knowledge of the natural universe. Scientific knowledge is not all knowledge, or even most, but it is the one which most clearly accumulates in a way accessible and usable to all. 
    
