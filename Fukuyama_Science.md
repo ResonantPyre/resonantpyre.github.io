@@ -1,6 +1,6 @@
 # Fukuyama's Scientific and Technological Universal History
 
-In which I try to explain Francis Fukyuyama's ideas about a scientific and technological universal history from my reading of his "The End of History and the Last Man". All quotes are from this book unless otherwise stated, as are most of the ideas. 
+In which I try to explain Francis Fukyuyama's ideas about a scientific and technological universal history from my reading of his "The End of History and the Last Man". All quotes are from this book unless otherwise stated, as are many of the ideas and examples. 
 
 
 ## What is a universal history and what might be its mechanism?
