@@ -22,9 +22,7 @@ Scientific progress is not, for now, entirely autonomous of man. It was neglecte
  
 Fukuyama describes two interactions on the individual and group level, which directly motivate the scientific and technological endeavor. The first is military competition. The second is the progressive conquest of nature to satisfy human desires, also called economic development. 
 
-The effect of these processes on society may be summed up with a pithy Lenin quote describing the cause and requirement of specialization:
-
-   > "Specialization necessarily pre-supposes centralization and in its turn imperatively calls for it". 
+The effect of these processes on society may be summed up with a pithy Lenin quote describing the cause and requirement of specialization. He describes, "Specialization necessarily pre-supposes centralization and in its turn imperatively calls for it". 
    
 This is only true to a point, but it does account for most of the societal changes technology has encouraged. Fukuyama cites one statistic that highlights this.
 
