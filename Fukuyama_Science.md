@@ -24,11 +24,11 @@ Fukuyama describes two interactions on the individual and group level, which dir
 
 The effect of these processes on society may be summed up with a pithy Lenin quote describing the cause and requirement of specialization. He describes, "Specialization necessarily pre-supposes centralization and in its turn imperatively calls for it". 
    
-This is only true to a point, but it does account for most of the societal changes technology has encouraged. Fukuyama cites one statistic that highlights this.
+This is only true to a point, but it does account for most of the societal changes technology has encouraged. Fukuyama cites a statistic that supports this.
 
   > In contrast to the nineteenth century, when four out of five Americans were self-employed and therefore not part of a bureaucratic organization, only one in ten falls into this category now. 
         
-State capacity had to develop to mobilize resources on national level, to increase education levels to have an elite capable of understanding and using technology. The poorer classes had to be placated with varying levels of political enfranchisement as they wielded weapons in wars of mass mobilization (the Napoleonic Wars onward). Collaboration and participation on a mass level, economically and otherwise, spurred greater linguistic homogeneity both naturally and through national policy. 
+State capacity had to develop to mobilize resources on national level, to increase education levels to have an elite capable of understanding and using technology. The poorer classes had to be placated with varying levels of political enfranchisement once they wielded weapons in wars of mass mobilization (the Napoleonic Wars onward). Collaboration and participation on a mass level, economically and otherwise, spurred greater linguistic homogeneity both naturally and through national policy. 
   
  A good example of specialization depending on and then further encouraging centralization is the emergence of absolute monarchies and aspects of the modern state under monarchs such as Louis XIII in France or Philip II in Spain. Largely motivated by war in this case, both broke the power of feudal and regional institutions in order to collect enough revenue for constant warfare. 
 
